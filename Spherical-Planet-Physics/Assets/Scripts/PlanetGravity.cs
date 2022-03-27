@@ -7,30 +7,34 @@ public class PlanetGravity : MonoBehaviour
     private GameObject[] everything;
     private LinkedList<GameObject> ListOfObjects;
 
-    public float mass = 10000000f;
+    public float mass = 500f;
     public float gConst = 9.8f;
 
     void Start()
     {
+        //Put every game object in a linked list
         everything = GameObject.FindObjectsOfType<GameObject>();
         ListOfObjects = new LinkedList<GameObject>(everything);
+        
+        //Remove "Planet"s and no rigidbody objects
         foreach (GameObject go in ListOfObjects)
         {
-            if (go.CompareTag("Planet"))
+            if (go.CompareTag("Planet") || go.GetComponent<Rigidbody>() == null)
             {
                 ListOfObjects.Remove(go);
             }
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //Apply force to everything with a rigidbody
         foreach (GameObject go in ListOfObjects)
         {
             if (go.GetComponent<Rigidbody>() != null)
             {
                 Rigidbody gorb = go.GetComponent<Rigidbody>();
+                //Gravity formula F = G(m1 * m2) / r^2
                 gorb.AddForce((transform.position - go.transform.position) * (gConst * ((mass * gorb.mass) / Mathf.Pow(Vector3.Distance(transform.position, go.GetComponent<Transform>().position) , 2f))));
             }
         }
