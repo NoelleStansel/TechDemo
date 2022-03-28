@@ -43,7 +43,7 @@ public class PlanetGravity : MonoBehaviour
                 if (go.tag == "Player" )
                 {
                     PlayerController pc = go.GetComponent<PlayerController>();
-                    if (appliedForce > pc.strongestPlanetForce + offsetConstant)
+                    if (appliedForce > pc.strongestPlanetForce)
                     {
                         pc.strongestPlanetForce = appliedForce;
                         pc.StrongestPlanet = this;
