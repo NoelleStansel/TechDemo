@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundMask;
 
+    private bool hasJetpack = false;
+
     bool isGrounded = false;
     float speedMod;
     Vector2 animationSmoothing,animVelocity;
