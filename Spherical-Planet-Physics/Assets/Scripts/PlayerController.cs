@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem particles;
 
     public PlanetGravity StrongestPlanet = null; //the planet with the most pull on the player
+    public float strongestPlanetForce = 0f; //force of the strongest pull on the player
 
     private bool hasJetpack = false;
 
@@ -122,6 +123,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = StrongestPlanet.transform.position - transform.position;
         Quaternion toRotation = Quaternion.FromToRotation(-transform.up, direction) * transform.rotation;
         transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnSpeed * Time.time);
+        //Reset strongest force var to 0
+        strongestPlanetForce = 0f;
     }
-
 }

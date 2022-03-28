@@ -26,7 +26,7 @@ public class PlanetGravity : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //Apply force to everything with a rigidbody
         foreach (GameObject go in ListOfObjects)
@@ -35,7 +35,20 @@ public class PlanetGravity : MonoBehaviour
             {
                 Rigidbody gorb = go.GetComponent<Rigidbody>();
                 //Gravity formula F = G(m1 * m2) / r^2
-                gorb.AddForce((transform.position - go.transform.position) * (gConst * ((mass * gorb.mass) / Mathf.Pow(Vector3.Distance(transform.position, go.GetComponent<Transform>().position) , 2f))));
+                float appliedForce = (gConst * ((mass * gorb.mass) / Mathf.Pow(Vector3.Distance(transform.position, go.GetComponent<Transform>().position), 2f)));
+                gorb.AddForce((transform.position - go.transform.position) * appliedForce);
+
+
+                // Track strongest planet acting on player
+                if (go.tag == "Player" )
+                {
+                    PlayerController pc = go.GetComponent<PlayerController>();
+                    if (appliedForce > pc.strongestPlanetForce)
+                    {
+                        pc.strongestPlanetForce = appliedForce;
+                        pc.StrongestPlanet = this;
+                    }
+                }
             }
         }
     }
