@@ -18,7 +18,7 @@ public class PlayerRotation : MonoBehaviour
         sensMod = 1;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (true) //here we can put a game over condition if we need one, artifact from previous code
         {

@@ -6,14 +6,19 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed = 10;
+    public float turnSpeed = 10;
     public float sprintMultiplier = 2;
     public float jumpStrength = 50;
+    public float jetpackForce = 100;
     public float groundRadius = .2f;
     public float drag = 6;
     public float animSmoothTime;
     public Animator anim;
     public Transform groundCheck;
     public LayerMask groundMask;
+    public ParticleSystem particles;
+
+    public PlanetGravity StrongestPlanet = null; //the planet with the most pull on the player
 
     private bool hasJetpack = false;
 
@@ -69,7 +74,22 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+        else if(Input.GetKey(KeyCode.Space) && !isGrounded && hasJetpack) //jetpack force & particles
+        {
+            rb.AddForce(jetpackForce * transform.up,ForceMode.Acceleration);
+            particles.Play();
+        }
 
+        if (!Input.GetKey(KeyCode.Space)) //particles turn off if space is not pressed
+        {
+            particles.Stop();
+        }
+
+    }
+
+    public void EquipJetpack()
+    {
+        hasJetpack = true;
     }
 
     void Jump()
@@ -95,6 +115,13 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("x", animationSmoothing.x);
         anim.SetFloat("z", animationSmoothing.y * speedMod);
+    }
+
+    private void LateUpdate()
+    {
+        Vector3 direction = StrongestPlanet.transform.position - transform.position;
+        Quaternion toRotation = Quaternion.FromToRotation(-transform.up, direction) * transform.rotation;
+        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnSpeed * Time.time);
     }
 
 }

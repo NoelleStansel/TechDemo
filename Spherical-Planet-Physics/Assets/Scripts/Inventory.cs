@@ -6,12 +6,13 @@ public class Inventory : MonoBehaviour
 {
     private GameObject playerModel;
     private GameObject playerJetpackModel;
+    private PlayerController controller;
 
     void Awake()
     {
         playerModel = this.gameObject.transform.GetChild(0).gameObject;
         playerJetpackModel = this.gameObject.transform.GetChild(1).gameObject;
-
+        controller = gameObject.GetComponent<PlayerController>();
         playerJetpackModel.SetActive(false);
     }
 
@@ -22,6 +23,8 @@ public class Inventory : MonoBehaviour
             Destroy(other.gameObject);
             playerModel.SetActive(false);
             playerJetpackModel.SetActive(true);
+            controller.EquipJetpack();
         }
     }
+
 }
