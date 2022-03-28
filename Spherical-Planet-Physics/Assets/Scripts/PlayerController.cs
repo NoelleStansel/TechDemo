@@ -40,8 +40,6 @@ public class PlayerController : MonoBehaviour
         SetDrag();
         GetInput();
         AnimUpdate();
-        Debug.Log("V/H" + vertical + " / " + horizontal);
-        Debug.Log("A - V/H" + animationSmoothing.x + " / " + animationSmoothing.y);
     }
 
     private void FixedUpdate()
@@ -122,7 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 direction = StrongestPlanet.transform.position - transform.position;
         Quaternion toRotation = Quaternion.FromToRotation(-transform.up, direction) * transform.rotation;
-        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnSpeed * Time.time);
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, turnSpeed * Time.deltaTime);
         //Reset strongest force var to 0
         strongestPlanetForce = 0f;
     }

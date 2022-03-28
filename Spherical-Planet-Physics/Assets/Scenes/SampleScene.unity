@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7fbc7829fa8b04dab47660430cda11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 800
+  mass: 2000
   gConst: 9.8
 --- !u!1 &689799415
 GameObject:
@@ -6513,7 +6513,7 @@ PrefabInstance:
       objectReference: {fileID: 775228053}
     - target: {fileID: 1008839716155803313, guid: 28fa3f83b6bf0054083bb0c15dc23d2c, type: 3}
       propertyPath: turnSpeed
-      value: 0.1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1008839716155803313, guid: 28fa3f83b6bf0054083bb0c15dc23d2c, type: 3}
       propertyPath: jetpackForce
@@ -6615,7 +6615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7fbc7829fa8b04dab47660430cda11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 300
+  mass: 800
   gConst: 7.5
 --- !u!135 &2136753544
 SphereCollider:
@@ -6687,7 +6687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136753542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 426, y: -394, z: 1598}
+  m_LocalPosition: {x: -127, y: -38, z: 651}
   m_LocalScale: {x: 300, y: 300, z: 300}
   m_Children: []
   m_Father: {fileID: 0}
