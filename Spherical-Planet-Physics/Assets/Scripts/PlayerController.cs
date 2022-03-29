@@ -77,6 +77,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(jetpackForce * transform.up,ForceMode.Acceleration);
             particles.Play();
+        } 
+        else if (Input.GetKey(KeyCode.E) && !isGrounded && hasJetpack) 
+        {
+            rb.AddForce(jetpackForce * (-transform.up), ForceMode.Acceleration);
         }
 
         if (!Input.GetKey(KeyCode.Space)) //particles turn off if space is not pressed
