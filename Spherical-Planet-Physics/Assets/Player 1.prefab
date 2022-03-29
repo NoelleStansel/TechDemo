@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 1008839716155803313}
   - component: {fileID: 1008839716155803314}
   - component: {fileID: 1008839716155803315}
+  - component: {fileID: 4606769624889184590}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -169,8 +170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  turnSpeed: 10
   sprintMultiplier: 2
   jumpStrength: 100
+  jetpackForce: 100
   groundRadius: 0.2
   drag: 6
   animSmoothTime: 0.1
@@ -179,6 +182,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  particles: {fileID: 0}
+  StrongestPlanet: {fileID: 0}
+  strongestPlanetForce: 0
 --- !u!54 &1008839716155803314
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,6 +215,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4606769624889184590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008839716155803316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ee2571cf98a4b46b58d94e9b8a2f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1008839716218407324
 GameObject:
   m_ObjectHideFlags: 0
